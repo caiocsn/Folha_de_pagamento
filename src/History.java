@@ -7,10 +7,10 @@ public class History {
 	float synd_tax;
 
 	public History(){
-		this.hours = 0.0;
-		this.comission = 0.0;
-		this.sales = 0.0;
-		this.synd_tax = 0.0;
+		this.hours = 0;
+		this.comission = 0;
+		this.sales = 0;
+		this.synd_tax = 0;
 	}
 
 }
