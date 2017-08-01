@@ -9,61 +9,42 @@ public class Employer {
 	private int type; //1- hourly, 2- salaried, 3-commissioned
 	private String type_name;
 	private int id;
-
-
-	public Employer(int id){
-		this.history = new Hashtable<Integer,History>();
-		this.id = id;
-		create_employer();				
-		System.out.printf("%s employer created!\n name:%s \n address:%s \n id:%d \n",this.type_name, this.name,this.address,this.id);		
-	}
+	private String payment_type;
+	private double salary;
+	public String payment_method;
+	private int sindicated;
+	private double sind_tax;
+	public int next_payment;
+	private int day_created;
 	
-	public Employer(int id, String name, String address, int type) {
+	public Employer(int id, String name, String address, int type, double salary, int today) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.type = type;
+		this.salary = salary;
+		this.payment_method = "bank";
+		this.sindicated = 0;
+		this.day_created = today;
 		this.generate_type_name();
 		this.history = new Hashtable<Integer,History>();
 		System.out.printf("%s employer created!\n name:%s \n address:%s \n id:%d \n",this.type_name, this.name,this.address,this.id);		
 
 	}
 
-	private void create_employer(){
-
-		Scanner scan = new Scanner(System.in);
-
-		System.out.println("Please, type the employer name");
-		this.name = scan.nextLine();
-
-		System.out.println("Now type the address");
-		this.address = scan.nextLine();
-
-		System.out.println("What is the employers type? Press: 1- hourly, 2- salaried, 3-commissioned");
-
-		int type_input = 0;
-
-		while(true){
-			type_input = scan.nextInt();
-			if(type_input > 0 && type_input < 4) {
-				this.type = type_input;
-				this.generate_type_name();
-				break;
-			}
-				System.out.println("Please, enter a valid type ...");
-			}
-		}
-	
 	private  void generate_type_name() {
 		switch(this.type){
 		case 1:
 			this.type_name = "Hourly";
+			this.payment_type = "weekly";
 			break;
 		case 2:
 			this.type_name = "Salaried";
+			this.payment_type = "monthly";
 			break;
 		case 3:
 			this.type_name = "Comissioned";
+			this.payment_type = "biweekly";
 			break;
 		}
 	}
@@ -80,15 +61,17 @@ public class Employer {
 		if(!this.history.containsKey(day))
 			this.history.put(day, new History());
 		
-		this.history.get(day).synd_tax += value;
+		this.history.get(day).tax += value;
 		
-		System.out.printf("The total value of tax for the day %d is: $%.2f \n ",day, this.history.get(day).synd_tax);
+		System.out.printf("The total value of tax for the day %d is: $%.2f \n ",day, this.history.get(day).tax);
 	}
 	
 	public void set_hour(double value, int day) {
 		if(this.history.get(day) == null)
 			this.history.put(day, new History());
 		
+		if(value > 8.0) 
+			value += (value-8)*0.5;
 		this.history.get(day).hours += value;
 		
 		System.out.printf("The total value of hours for the day %d is: $%.2f \n ",day,this.history.get(day).hours);
@@ -104,4 +87,29 @@ public class Employer {
 		System.out.printf("The total value of comission for the day %d is: $%.2f \n ",day,this.history.get(day).sales);
 
 	}
+
+	public void set_payment_method(String method) {
+		this.payment_method = method;
+	}
+	
+	public void set_name(String name) {
+		this.name = name;
+	}
+	
+	public void set_address(String address) {
+		this.address = address;
+	}
+
+	public void set_sind(int sind) {
+		this.sindicated = sind;
+	}
+	
+	public void set_sind_tax(double tax) {
+		this.sind_tax = tax;
+	}
+	
+	public void set_payment_type(String type) {
+		this.payment_type = type;
+	}
 }
+

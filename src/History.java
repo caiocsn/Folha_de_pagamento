@@ -4,13 +4,13 @@ public class History {
 	double hours;
 	double comission;
 	double sales;
-	double synd_tax;
+	double tax;
 
 	public History(){
+		this.tax = 0;
 		this.hours = 0;
 		this.comission = 0;
 		this.sales = 0;
-		this.synd_tax = 0;
 	}
 
 }

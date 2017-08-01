@@ -11,15 +11,9 @@ public class Payroll {
 		this.today = 1;
 	}
 
-	public void add_employer(){
-		Employer new_employer =  new Employer(id_count);
-		this.employers.add(new_employer);
-		this.id_count ++;
-	}
-
-	public void add_employer(String name, String address, int type) {
+	public void add_employer(String name, String address, int type, float salary) {
 		if(type > 0 && type < 4) {
-			Employer new_employer = new Employer(id_count,name,address,type);
+			Employer new_employer = new Employer(id_count,name,address,type,salary,this.today);
 			this.employers.add(new_employer);
 			this.id_count ++;
 		}
@@ -61,4 +55,27 @@ public class Payroll {
 		this.employers.get(i).set_hour(value, day);
 	}
 	
+	public void set_name(int id, String name) {
+		this.employers.get(this.employer_search(id)).set_name(name);
+	}
+	
+	public void set_address(int id, String address) {
+		this.employers.get(this.employer_search(id)).set_address(address);
+	}
+	
+	public void set_payment_method(int id, String method) {
+		this.employers.get(this.employer_search(id)).set_payment_method(method);
+	}
+	
+	public void set_payment_type(int id, String type) {
+		this.employers.get(this.employer_search(id)).set_payment_type(type);
+	}
+	
+	public void set_sind(int id, int sind) {
+		this.employers.get(this.employer_search(id)).set_sind(sind);;
+	}
+	
+	public void set_sind_tax(int id, double tax) {
+		this.employers.get(this.employer_search(id)).set_sind_tax(tax);
+	}
 }
