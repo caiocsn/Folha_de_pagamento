@@ -1,5 +1,13 @@
 # Folha de pagamento
  
+ Federal University of Alagoas
+ 
+ Class: COMP215
+ 
+ Student: Caio César dos Santos Nunes
+ 
+ -----------------------------------------------------
+ 
  Implemented Features 
 
  1 - Add Employer
