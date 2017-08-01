@@ -1,10 +1,10 @@
 
 public class History {
 	// This class implements a log of monthly payments
-	float hours;
-	float comission;
-	float sales;
-	float synd_tax;
+	double hours;
+	double comission;
+	double sales;
+	double synd_tax;
 
 	public History(){
 		this.hours = 0;
